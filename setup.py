@@ -12,5 +12,5 @@ setup(
     version="0.1",
     install_requires=["nose",],
     packages=["pythonProj","tests",],
-    name="pythonProj",
+    name="pythonProj"
 )
