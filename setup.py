@@ -6,9 +6,9 @@ except ImportError:
 
 setup(
     description="An example of how to create and publish to pypi.org",
-    author="Michal Reuven",
-    author_email="michal@jfrog.com",
-    url="http://localhost:8081/artifactory/api/pypi/pypi-local/simple",
+    author="Jainish Shah",
+    author_email="jainishs@jfrog.com",
+    url="https://gcartifactory-us.jfrog.info/artifactory/api/pypi/circleci-pypi/simple",
     version="0.1",
     install_requires=["nose",],
     packages=["pythonProj","tests",],
