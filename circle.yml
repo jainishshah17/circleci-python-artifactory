@@ -4,11 +4,10 @@ machine:
 dependencies:
   pre:
     - ./circleci-credential.sh
-    - cat ~/.pypirc
+    - python setup.py sdist upload -r local
+    - python setup.py bdist_wheel upload -r local
 deployment:
   master:
     branch: master
     commands:
-    - python setup.py register -r circleci-pypi
-    - python setup.py sdist upload  -r circleci-pypi
     - pip install -r requirements.txt
