@@ -1,4 +1,4 @@
---index-url https://gcartifactory-us.jfrog.info/artifactory/api/pypi/circleci-pypi/simple
+--index-url https://$ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD@gcartifactory-us.jfrog.info/artifactory/api/pypi/circleci-pypi/simple
 PyYAML==3.11
 django-rss-plugin==0.0.9
 nltk==3.0.1
