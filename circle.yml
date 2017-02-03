@@ -4,6 +4,7 @@ machine:
 dependencies:
   pre:
     - ./circleci-credential.sh
+    - cat ~/.pypirc
 deployment:
   master:
     branch: master
