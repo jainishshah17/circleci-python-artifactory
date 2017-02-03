@@ -3,6 +3,7 @@ machine:
     version: pypy-2.2.1
 dependencies:
   pre:
+    - ./circleci-credential.sh
 deployment:
   master:
     branch: master
