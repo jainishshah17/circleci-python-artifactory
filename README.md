@@ -1,13 +1,15 @@
 # circleci-python-artifactory
 
-###Build Status
+## Store build information and build artifacts to JFrog Artifactory
+
+### Build Status
 [![CircleCI](https://circleci.com/gh/jainishshah17/circleci-python-artifactory.svg?style=svg)](https://circleci.com/gh/jainishshah17/circleci-python-artifactory)
 
 ## Artifactory Integration with Circle-CI
 
-`To make this integration  work you will need to have running Artifactory-pro/Artifactory SAAS/Artifactory Enterprise which is acccessible form outside.`
+`To make this integration  work you will need to have running Artifactory-pro/Artifactory SAAS.`
 
-####Python Example
+#### Python Example
 This is a sample project that resolve a dependency from Artifactory and deploys the build artifacts to Artifactory.
 
 Step 1:
