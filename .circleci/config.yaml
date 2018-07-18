@@ -1,0 +1,41 @@
+# Python CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-python/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/python:3.6
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+
+    working_directory: ~/circleci-python-artifactory
+
+    steps:
+      - checkout
+      - setup_remote_docker
+
+      - save_cache:
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
+          paths:
+            - ./venv
+
+      # Install JFrog CLI
+      - run: curl -fL https://getcli.jfrog.io | sh
+      # Configure Artifactory instance with JFrog CLI
+      - run: ./jfrog rt config --url $ARTIFACTORY_URL --user $ARTIFACTORY_USER --apikey $ARTIFACTORY_PASSWORD --interactive false
+      # Capture environment variables for build information
+      - run: ./jfrog rt bce $CIRCLE_JOB $CIRCLE_BUILD_NUM
+      # Publish build information to Artifactory
+      - run: ./jfrog rt bp $CIRCLE_JOB $CIRCLE_BUILD_NUM
+      # Scan Build through JFrog Xray (Optional)
+      - run: ./jfrog rt bs $CIRCLE_JOB $CIRCLE_BUILD_NUM
+      # Promote build to Staging
+      - run: ./jfrog rt bpr $CIRCLE_JOB $CIRCLE_BUILD_NUM $NPM_STAGE_REPO --status="Staged" --copy=true
+      # Promote build to Production
+      - run: ./jfrog rt bpr $CIRCLE_JOB $CIRCLE_BUILD_NUM $NPM_PROD_REPO --status="Promoting to Prod" --copy=true
+
